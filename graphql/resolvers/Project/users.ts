@@ -1,4 +1,4 @@
-import db, {UserRow, ProjectRow} from '../../db'
+import db, { UserRow, ProjectRow } from '../../db'
 
 export default async function users(project: ProjectRow): Promise<UserRow[]> {
   const users: UserRow[] = await db.getAll(
