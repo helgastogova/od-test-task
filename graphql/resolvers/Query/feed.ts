@@ -1,4 +1,4 @@
-import db, {  FeedItemRow}  from '../../db'
+import db, { FeedItemRow } from '../../db'
 import { FellowshipType } from 'types/enums'
 
 const LIMIT = 5
@@ -7,7 +7,6 @@ type Args = {
   offset: number
   feedType: FellowshipType
 }
-
 
 export default async function feed(
   parent: unknown,
@@ -125,6 +124,7 @@ export default async function feed(
   if (!feedItems) {
     throw new Error(`FeedItems not found`)
   }
+
 
   const modifyFeedItems: FeedItemRow[] = feedItems.map((item: FeedItemRow, key) => {
     const { type } = item
