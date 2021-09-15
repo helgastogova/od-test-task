@@ -1,0 +1,13 @@
+.root {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.main {
+  padding-top: 20px;
+  margin: 0 10px;
+}
+
+.link {
+  padding: 18px 10px 10px;
+}

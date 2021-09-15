@@ -1,10 +1,13 @@
-import db, {UserRow} from '../../db'
+import db, { UserRow } from '../../db'
 
 type Args = {
-  id: number;
+  id: number
 }
 
-export default async function user(parent: unknown, {id}: Args): Promise<UserRow> {
+export default async function user(
+  parent: unknown,
+  { id }: Args
+): Promise<UserRow> {
   const user: UserRow | undefined = await db.getOne(
     'SELECT * FROM users WHERE id = ?',
     [id]

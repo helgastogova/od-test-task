@@ -1,5 +1,6 @@
-import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client'
-import {createGlobalStyle, ThemeProvider} from 'styled-components'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { offsetLimitPagination } from '@apollo/client/utilities'
 import type { AppProps } from 'next/app'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -17,13 +18,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 const client = new ApolloClient({
   uri: '/api/graphql',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          feed: offsetLimitPagination(['feedType']),
+        },
+      },
+    },
+  }),
 })
 
 const theme = {
-  colors: {
-  }
-};
+  colors: {},
+}
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -34,6 +42,12 @@ const GlobalStyle = createGlobalStyle`
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 14px;
   }
+
+  body {
+    min-width: 320px;
+    overflow: scroll;
+  }
+
 
   a {
     color: #0070f0;
@@ -71,4 +85,4 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-`;
+`
