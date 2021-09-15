@@ -41,7 +41,7 @@ const Feed: FC = () => {
       query: { type },
     } = router
 
-    const typeFromUrl: any = router.query.type || 'all'
+    const typeFromUrl: string = router.query.type as string || 'all'
 
     setFeedType(typeFromUrl)
   }, [router.isReady])

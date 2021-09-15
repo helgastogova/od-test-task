@@ -125,7 +125,8 @@ export default async function feed(
     throw new Error(`FeedItems not found`)
   }
 
-  const modifyFeedItems: any = feedItems.map((item: any, key) => {
+
+  const modifyFeedItems: FeedItemRow[] = feedItems.map((item: FeedItemRow, key) => {
     const { type } = item
     switch (type) {
       case 'Project':

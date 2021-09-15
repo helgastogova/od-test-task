@@ -72,13 +72,4 @@ export type AnnouncementRow = {
   updated_ts: Date
 }
 
-export type FeedItemRow = {
-  id: number
-  type: string
-  name: string
-  bio: string
-  avatar_url: string
-  fellowship: 'founders' | 'angels' | 'writers'
-  created_ts: Date
-  updated_ts: Date
-}
+export type FeedItemRow = AnnouncementRow | ProjectRow | UserRow | any
